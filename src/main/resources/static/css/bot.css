@@ -1,0 +1,235 @@
+
+#tltip {
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+}
+
+#tltip a img {
+	  background: transparent !important;
+}
+
+#tltip #tltext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#tltip #tltext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+#tltip:hover #tltext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+#callMan {
+	position: fixed;
+	bottom: 4%;
+	right: 2%;
+	background-color: transparent;
+}
+
+#showDataForUser hr {
+	  display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-style: inset;
+    border-width: 1px;
+    border-color: black
+}
+
+#botWindow {
+	position: fixed;
+	bottom: 0%;
+	right: 0%;
+	width: 315px;
+	padding-right: 10px;	
+	
+	@import (less) url("bootstrap.css");
+}
+ 
+ #botWindow .form-group {
+  margin-bottom: 25px;
+ }
+
+#botWindow .btn-white {
+	border-color: #cccccc;
+	color: #333333;
+	background-color: #ffffff;
+}
+
+#botWindow .portlet .portlet-heading {
+	padding: 0 15px;
+	border-radius: 20px 20px 0px 0px;
+	height: 45px;
+	background-color: #00A8D4 !important;
+	color: #fff;
+}
+
+#botWindow .portlet .portlet-heading h4 {
+	padding: 1px 0;
+	font-size: 16px;
+}
+
+#botWindow .portlet .portlet-heading a {
+	color: #fff;
+}
+
+#botWindow .portlet .portlet-heading a:hover, .portlet .portlet-heading a:active,
+	.portlet .portlet-heading a:focus {
+	outline: none;
+}
+
+#botWindow .portlet .portlet-widgets .dropdown-menu a {
+	color: #333;
+}
+
+#botWindow .portlet .portlet-widgets ul.dropdown-menu {
+	min-width: 0;
+}
+
+#botWindow .portlet .portlet-heading .portlet-title {
+	float: left;
+}
+
+#botWindow .portlet .portlet-heading .portlet-title h4 {
+	margin: 10px 0;
+	color: #fff;
+}
+
+#botWindow .portlet .portlet-heading .portlet-widgets {
+	float: right;
+	margin: 8px 0;
+}
+
+#botWindow .portlet .portlet-heading .portlet-widgets .tabbed-portlets {
+	display: inline;
+}
+
+#botWindow .portlet .portlet-heading .portlet-widgets .divider {
+	margin: 0 5px;
+}
+
+#botWindow .portlet .portlet-body {
+	padding: 15px;
+	background: #fff;
+}
+
+#botWindow .portlet .portlet-footer {
+	padding: 10px 15px;
+	background-color: #00A8D4;
+}
+
+#botWindow .portlet .portlet-footer ul {
+	margin: 0;
+}
+
+#botWindow .portlet-green, .portlet-green>.portlet-heading {
+	border-color: #16a085;
+}
+
+#botWindow .portlet-green>.portlet-heading {
+	color: #fff;
+	background-color: #16a085;
+}
+
+#botWindow .portlet-orange, .portlet-orange>.portlet-heading {
+	border-color: #f39c12;
+}
+
+#botWindow .portlet-orange>.portlet-heading {
+	color: #fff;
+	background-color: #f39c12;
+}
+
+#botWindow .portlet-blue, .portlet-blue>.portlet-heading {
+	border-color: #2980b9;
+}
+
+#botWindow .portlet-default>.portlet-heading, .portlet-dark-blue>.portlet-heading {
+	color: #fff;
+	background-color: rgb(221, 221, 221); . portlet-blue >.portlet-heading
+	{ color : #fff;
+	background-color: #d2d2d2;
+}
+
+#botWindow .portlet portlet-default {
+	border-radius: 5px;
+}
+
+#botWindow .portlet-red, .portlet-red>.portlet-heading {
+	border-color: #e74c3c;
+}
+
+#botWindow .portlet-red>.portlet-heading {
+	color: #fff;
+	background-color: #e74c3c;
+}
+
+#botWindow .portlet-purple, .portlet-purple>.portlet-heading {
+	border-color: #8e44ad;
+}
+
+#botWindow .portlet-purple>.portlet-heading {
+	color: #fff;
+	background-color: #8e44ad;
+}
+
+#botWindow .portlet-default, .portlet-dark-blue, .portlet-default>.portlet-heading,
+	.portlet-dark-blue>.portlet-heading {
+	border-color: #34495e;
+}
+
+#botWindow .portlet-default>.portlet-heading, .portlet-dark-blue>.portlet-heading {
+	color: #fff;
+	background-color: #34495e;
+}
+
+#botWindow .portlet-basic, .portlet-basic>.portlet-heading {
+	border-color: #333;
+}
+
+#botWindow .portlet-basic>.portlet-heading {
+	border-bottom: 1px solid #333;
+	color: #333;
+	background-color: #fff;
+}
+
+@media ( min-width :768px) {
+	.portlet {
+		margin-bottom: 30px;
+	}
+}
+
+#botWindow .text-green {
+	color: #20c304;
+}
+
+#botWindow .text-orange {
+	color: #f39c12;
+}
+
+.text-red {
+	color: #e74c3c;
+}

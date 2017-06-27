@@ -1,0 +1,72 @@
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/loader.css">
+    <link rel="stylesheet" href="/css/bot.css">
+  
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+  <script type="text/javascript" src="/lib/moment.js"></script>
+  <script type="text/javascript" src="/js/botWindow.js"></script>
+  <script type="text/javascript" src="/js/botForm.js"></script>
+
+  
+</head>
+<div id='botWindow' class="container snippet">
+  <div>
+    <div>
+      <div class="portlet portlet-default">
+        <div class="portlet-heading">
+          <div class="portlet-title">
+            <h4><i></i> АТ Прикарпаттяобленерго</h4>
+          </div>
+          <div class="portlet-widgets">
+            <span class="divider"></span>
+            <a data-toggle="collapse" data-parent="#accordion" href="#chat"><i id='hideWindow' class="fa fa-chevron-down"></i></a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div id="chat" class="panel-collapse collapse in">
+          <div>
+            <div class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 300px;">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="media" id='media'>
+                    <div id='homeForUser'>
+                      <p>Ми раді вам допомогти : </p>
+                      <div class="form-group">
+                        <label for="email">Виберіть тип споживача :</label>
+                        <select id='selectUser' class="form-control">
+                                    <option value="default">Виберіть споживача</option>
+                                    <option value="pobut">Побутовий споживач</option>
+                                    <option value="juridic">Юридичний споживач</option>
+                                </select>
+                          <div class="loader">Завантаження...</div>      
+                      </div>
+                    </div>
+                    <div id='formDiv'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet-footer">
+          <form role="form">
+            <div class="form-group">
+
+              <div class="clearfix"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
