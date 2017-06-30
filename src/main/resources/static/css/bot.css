@@ -69,9 +69,6 @@
 	@import (less) url("bootstrap.css");
 }
  
- #botWindow .form-group {
-  margin-bottom: 25px;
- }
 
 #botWindow .btn-white {
 	border-color: #cccccc;
@@ -137,8 +134,12 @@
 }
 
 #botWindow .portlet .portlet-footer {
-	padding: 10px 15px;
+	padding: 4px 5px;
 	background-color: #00A8D4;
+}
+
+#botWindow .form-group {
+    margin-bottom: 25px;
 }
 
 #botWindow .portlet .portlet-footer ul {

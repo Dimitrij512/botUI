@@ -293,9 +293,13 @@ $(function() {
       
       if (appeal === 'consultation') {
 
-        $("#showDataForUser").html('<p style="color:red;"> Вибачте, наразі дана послуга' +
-          '<br> знаходиться в розробці.' +
-          '<br> Просимо вибачення за тимчасові незручності.</p>');
+        $('#media').load('/templates/chat.html');
+        
+        //$( '#botWindow .portlet .portlet-footer' ).css("padding","10px 15px");
+        $('#footer').load('/templates/chatFooter.html');
+        //        $("#showDataForUser").html('<p style="color:red;"> Вибачте, наразі дана послуга' +
+//          '<br> знаходиться в розробці.' +
+//          '<br> Просимо вибачення за тимчасові незручності.</p>');
 
       } else if (appeal === 'lackOfElectricity') {
 
