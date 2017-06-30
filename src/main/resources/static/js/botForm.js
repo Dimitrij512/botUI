@@ -21,6 +21,10 @@ var validation = {
   },
   isLength: function(str) {
     return str.length == 8;
+  },
+  isPhoneNumber:function(str){
+    var pattern = /^(\+38|0)\d{7,10}$/;
+    return pattern.test(str);
   }
 
 };
@@ -45,7 +49,7 @@ $(function() {
 
     isJuridic = false;
     let inputValue = $("#personalAccount").val();
-    let isNumber = validation.isNumber(inputValue)
+    let isNumber = validation.isNumber(inputValue);
     let isNotEmpty = validation.isNotEmpty(inputValue);
     let isLength = validation.isLength(inputValue);
 
@@ -108,23 +112,36 @@ $(function() {
   $("#submitBill1").click(function() {
 
     let inputValue = $("#indicator").val();
-    let isNumber = validation.isNumber(inputValue)
+    let inputPhoneNumber = $("#phoneNumber").val();
+    let isNumber = validation.isNumber(inputValue);
     let isNotEmpty = validation.isNotEmpty(inputValue);
 
-    if (isNumber && isNotEmpty) {
+    let isPhoneNumber = inputPhoneNumber === ''? true : validation.isPhoneNumber(inputPhoneNumber);
+    
+      if(!isPhoneNumber){
+        $("#phoneNumber").css("border", "1px solid red");
+        $('#errorPhoneNumber').html('<p style="color:red;"> Невіний формат номеру телефону</p>'); 
+      }else{
+        $("#phoneNumber").css("border", "");
+        $('#errorPhoneNumber').empty();
+      }
 
+      
+    if(!isNumber){
+      $("#indicator").css("border", "1px solid red");
+      $('#errorIndicator').html('<p style="color:red;"> Некоректно введений показник </p>');
+    }else{
+      $("#indicator").css("border", "");
+      $('#errorIndicator').empty();
+    }
+    
+    if (isNumber && isPhoneNumber) {
       $('.loader').show();
-
       $('#showDataForUser').hide();
 
       saveIndicatorForOneZoneCounter(userPreChat.accountNumber);
-
-    } else {
-
-      $("#indicator").css("border", "1px solid red");
-      $('#errorIndicator').html('<p style="color:red;"> Некоректно введений показник </p>');
-
     }
+    
   });
 
   $("#submitBill2").click(function() {
@@ -139,7 +156,20 @@ $(function() {
     let inputValue2 = $("#nightIndicator2").val();
     let isNumber2 = validation.isNumber(inputValue2)
     let isNotEmpty2 = validation.isNotEmpty(inputValue2);
+    
+    let inputPhoneNumber = $("#phoneNumber").val();
+    
+    let isPhoneNumber = inputPhoneNumber === ''? true : validation.isPhoneNumber(inputPhoneNumber);
 
+    if(!isPhoneNumber){
+      $("#phoneNumber").css("border", "1px solid red");
+      $('#errorPhoneNumber').html('<p style="color:red;"> Невірний формат </p>');
+      
+    }else{
+      $("#phoneNumber").css("border", "");
+      $('#errorPhoneNumber').empty();
+    }
+    
     if (!(isNumber1 && isNotEmpty1)) {
 
       $("#dayIndicator2").css("border", "1px solid red");
@@ -164,7 +194,7 @@ $(function() {
       $('#errorIndicatorNight').empty();
     }
 
-    if (validInputDay && validInputNight) {
+    if (validInputDay && validInputNight && isPhoneNumber) {
 
       $('.loader').show();
 
@@ -190,9 +220,22 @@ $(function() {
     let isNotEmpty2 = validation.isNotEmpty(inputValue2);
 
     let inputValue3 = $("#nightIndicator3").val();
-    let isNumber3 = validation.isNumber(inputValue3)
+    let isNumber3 = validation.isNumber(inputValue3);
     let isNotEmpty3 = validation.isNotEmpty(inputValue3);
+    
+    let inputPhoneNumber = $("#phoneNumber").val();
+    
+    let isPhoneNumber = inputPhoneNumber === ''? true : validation.isPhoneNumber(inputPhoneNumber);
 
+    if(!isPhoneNumber){
+      $("#phoneNumber").css("border", "1px solid red");
+      $('#errorPhoneNumber').html('<p style="color:red;"> Невірний формат </p>');
+      
+    }else{
+      $("#phoneNumber").css("border", "");
+      $('#errorPhoneNumber').empty();
+    }
+    
     if (!(isNumber1 && isNotEmpty1)) {
 
       $("#fullfpeak").css("border", "1px solid red");
@@ -230,7 +273,7 @@ $(function() {
       $('#errorNightIndicator3').empty();
     }
 
-    if (isValidFullfpeak && isValidHalfPeak && isValidNight) {
+    if (isValidFullfpeak && isValidHalfPeak && isValidNight && isPhoneNumber) {
 
       $('.loader').show();
 

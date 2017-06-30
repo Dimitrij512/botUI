@@ -205,7 +205,11 @@ function saveIndicatorForThreeZoneCounter(accountNumber) {
 
     "halfPeakIndicator": $("#halfPeak").val(),
 
-    "nightIndicator": $("#nightIndicator3").val()
+    "nightIndicator": $("#nightIndicator3").val(),
+  }
+  
+  if($("#phoneNumber").val() !== null){
+    indicatorThreeZone.phoneNumber = $("#phoneNumber").val()
   }
 
   $.ajax({
@@ -243,6 +247,11 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
 
     "nightIndicator": $("#nightIndicator2").val()
   }
+  
+  if($("#phoneNumber").val() !== ''){
+    
+    indicatorTwoZone.phoneNumber = $("#phoneNumber").val()
+  }
 
   $.ajax({
     type: 'POST',
@@ -276,7 +285,10 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
   var indicator = {
 
     "indicator": $("#indicator").val()
-
+  }
+  
+  if($("#phoneNumber").val() !== ''){
+    indicator.phoneNumber = $("#phoneNumber").val()
   }
 
   $.ajax({
