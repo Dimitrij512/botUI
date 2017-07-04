@@ -186,8 +186,16 @@ function getBillCustomer(accountNumber) {
     contentType: 'application/json',
     success: function(response) {
       $('.loader').hide();
+      
+      if(response > 0){
       $('#showDataForUser').html('<p> Шановний споживач, <br>станом на  : ' + today +
         ' <br> Вам до оплати : ' + response + ' грн. </p>');
+      }else{
+        var bill = response;
+        
+        $('#showDataForUser').html('<p> Шановний споживач, <br>станом на  : ' + today +
+            ' <br> у Вас переплата : ' + bill.substring(1) + ' грн. </p>');
+      }
     },
     error: function(jqXHR) {
       $('.loader').hide();
@@ -208,7 +216,7 @@ function saveIndicatorForThreeZoneCounter(accountNumber) {
     "nightIndicator": $("#nightIndicator3").val(),
   }
   
-  if($("#phoneNumber").val() !== null){
+  if($("#phoneNumber").val() !== ''){
     indicatorThreeZone.phoneNumber = $("#phoneNumber").val()
   }
 
@@ -221,7 +229,16 @@ function saveIndicatorForThreeZoneCounter(accountNumber) {
 
       $('.loader').hide();
 
-      $('#showDataForUser').html('<p>' + response + ' </p>');
+      
+      if($("#phoneNumber").val() !== ''){
+        
+        $('#showDataForUser').html('<p>' + response  + ' Протягом доби Вам буде відправлено смс повідомлення з сумою до оплати </p>');
+        
+      }else{
+        
+        $('#showDataForUser').html('<p>' + response + ' </p>');
+      }
+
       $('#showDataForUser').show();
     },
     error: function(jqXHR) {
@@ -262,7 +279,14 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
 
       $('.loader').hide();
 
-      $('#showDataForUser').html('<p>' + response + ' </p>');
+      if($("#phoneNumber").val() !==''){
+        
+        $('#showDataForUser').html('<p>' + response  + ' Протягом доби Вам буде відправлено смс повідомлення з сумою до оплати </p>');
+        
+      }else{
+        
+        $('#showDataForUser').html('<p>' + response + ' </p>');
+      }
 
       $('#showDataForUser').show();
 
@@ -299,7 +323,16 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
     success: function(response) {
 
       $('.loader').hide();
-      $('#showDataForUser').html('<p>' + response + ' </p>');
+      
+      if($("#phoneNumber").val() !== ''){
+        
+        $('#showDataForUser').html('<p>' + response  + ' <br>Протягом доби Вам буде відправлено смс повідомлення з сумою до оплати </p>');
+        
+      }else{
+        
+        $('#showDataForUser').html('<p>' + response + ' </p>');
+      }
+      
       $('#showDataForUser').show();
     },
     error: function(jqXHR) {

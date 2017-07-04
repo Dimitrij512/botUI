@@ -120,7 +120,7 @@ $(function() {
     
       if(!isPhoneNumber){
         $("#phoneNumber").css("border", "1px solid red");
-        $('#errorPhoneNumber').html('<p style="color:red;"> Невіний формат номеру телефону</p>'); 
+        $('#errorPhoneNumber').html('<p style="color:red;"> Невіний формат </p>'); 
       }else{
         $("#phoneNumber").css("border", "");
         $('#errorPhoneNumber').empty();
@@ -330,8 +330,8 @@ $(function() {
         getBillCustomer(userPreChat.accountNumber);
 
       } else if (appeal === 'indexes') {
-        if(false){
-      //  if (!isCanGiveIndexes()) {
+        
+        if (!isCanGiveIndexes()) {
           $("#showDataForUser").html('<p style="color:red;"> Вибачте, показники приймаються' +
             '<br> з 20 числа поточного місяця ' +
             '<br> по 3 число наступного місяця!</p>');
@@ -346,8 +346,14 @@ $(function() {
   });
 });
 
+function textAreaAdjust(o) {
+  o.style.height = "1px";
+  o.style.height = (20+o.scrollHeight)+"px";
+}
+
+
 function isCanGiveIndexes() {
   var date = new Date();
   var numberDay = date.getDate();
-  return (numberDay >= 20 || 3 >= numberDay) ? true : false;
+  return (numberDay <= 20 && 1 <= numberDay) ? true : false;
 }
