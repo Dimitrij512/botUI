@@ -1,14 +1,3 @@
-
-var objappVersion = navigator.appVersion; 
-var objAgent = navigator.userAgent; 
-var objbrowserName = navigator.appName; 
-var objfullVersion = ''+parseFloat(navigator.appVersion); 
-var objBrMajorVersion = parseInt(navigator.appVersion,10); 
-var objOffsetName,objOffsetVersion,ix;
-
-
-
-
 var validation = {
 
   isNotEmpty: function(str) {
@@ -44,6 +33,8 @@ $(function() {
     });
 
   });
+  
+  
 
   $("#submitPobutUser").click(function() {
 
@@ -294,9 +285,12 @@ $(function() {
       if (appeal === 'consultation') {
 
         $('#media').load('/templates/chat.html');
+
         
-        //$( '#botWindow .portlet .portlet-footer' ).css("padding","10px 15px");
+        console.log(new Date($.now()));
         $('#footer').load('/templates/chatFooter.html');
+        //$("#timeStartChat").text("dfasdfasdf");
+        
         //        $("#showDataForUser").html('<p style="color:red;"> Вибачте, наразі дана послуга' +
 //          '<br> знаходиться в розробці.' +
 //          '<br> Просимо вибачення за тимчасові незручності.</p>');
@@ -334,7 +328,7 @@ $(function() {
         if (!isCanGiveIndexes()) {
           $("#showDataForUser").html('<p style="color:red;"> Вибачте, показники приймаються' +
             '<br> з 20 числа поточного місяця ' +
-            '<br> по 3 число наступного місяця!</p>');
+            '<br> по 1 число наступного місяця!</p>');
         } else {
           loadInputForIndexes(userPreChat.activeScaleCount);
         }
@@ -351,9 +345,13 @@ function textAreaAdjust(o) {
   o.style.height = (20+o.scrollHeight)+"px";
 }
 
-
 function isCanGiveIndexes() {
   var date = new Date();
   var numberDay = date.getDate();
-  return (numberDay <= 20 && 1 <= numberDay) ? true : false;
+  return (numberDay >= 20 && 1 == numberDay) ? true : false;
+}
+
+function getCurrentDate(date){
+  var dt = new Date();
+  var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 }

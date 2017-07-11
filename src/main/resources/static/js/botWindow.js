@@ -15,11 +15,7 @@ $(function() {
   });
 
   $('#showBotWindow').click(function() {
-    
-    console.log('navigation ..');
-    
-    console.log(navigator.userAgent); 
-    
+   
     if ($('#containerBot').is(':empty')){
       
       $("#callMan").hide();
