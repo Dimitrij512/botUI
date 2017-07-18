@@ -5,7 +5,7 @@ function getPobutUser(personalAccount) {
   var theResponse;
   $.ajax({
     type: 'GET',
-    url: host + '/chat-bot/customer/physical/' + personalAccount,
+    url: host + '/chat/customer/physical/' + personalAccount,
     contentType: 'application/json',
     async: true,
 
@@ -50,7 +50,7 @@ function getJuridicUser(contractNumber) {
 
   $.ajax({
     type: 'POST',
-    url: host + '/chat-bot/customer/juridical',
+    url: host + '/chat/customer/juridical',
     data: JSON.stringify(juridicUser),
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
@@ -90,7 +90,7 @@ function getJuridicUser(contractNumber) {
 function getEnergyReportPobut(accountNumber) {
   $.ajax({
     type: 'GET',
-    url: host + '/chat-bot/customer/physical/' + accountNumber + '/report',
+    url: host + '/chat/customer/physical/' + accountNumber + '/report',
     contentType: 'application/json',
     success: function(response) {
 
@@ -132,7 +132,7 @@ function getEnergyReportJuridic(contractNumber, counterNumber) {
 
   $.ajax({
     type: 'POST',
-    url: host + '/chat-bot/customer/juridical/report',
+    url: host + '/chat/customer/juridical/report',
     data: JSON.stringify(juridicUser),
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
@@ -182,7 +182,7 @@ function getBillCustomer(accountNumber) {
   var today = getCurrentDate();
   $.ajax({
     type: 'GET',
-    url: host + '/chat-bot/customer/physical/' + accountNumber + '/bill',
+    url: host + '/chat/customer/physical/' + accountNumber + '/bill',
     contentType: 'application/json',
     success: function(response) {
       $('.loader').hide();
@@ -222,7 +222,7 @@ function saveIndicatorForThreeZoneCounter(accountNumber) {
 
   $.ajax({
     type: 'POST',
-    url: host + '/chat-bot/customer/physical/' + accountNumber + '/indicator/threezone',
+    url: host + '/chat/customer/physical/' + accountNumber + '/indicator/threezone',
     data: JSON.stringify(indicatorThreeZone),
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
@@ -272,7 +272,7 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
 
   $.ajax({
     type: 'POST',
-    url: host + '/chat-bot/customer/physical/' + accountNumber + '/indicator/twozone',
+    url: host + '/chat/customer/physical/' + accountNumber + '/indicator/twozone',
     data: JSON.stringify(indicatorTwoZone),
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
@@ -317,7 +317,7 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
 
   $.ajax({
     type: 'POST',
-    url: host + '/chat-bot/customer/physical/' + accountNumber + '/indicator/onezone',
+    url: host + '/chat/customer/physical/' + accountNumber + '/indicator/onezone',
     data: JSON.stringify(indicator),
     contentType: 'application/json; charset=utf-8',
     success: function(response) {

@@ -284,16 +284,9 @@ $(function() {
       
       if (appeal === 'consultation') {
 
-        $('#media').load('/templates/chat.html');
-
-        
-        console.log(new Date($.now()));
-        $('#footer').load('/templates/chatFooter.html');
-        //$("#timeStartChat").text("dfasdfasdf");
-        
-        //        $("#showDataForUser").html('<p style="color:red;"> Вибачте, наразі дана послуга' +
-//          '<br> знаходиться в розробці.' +
-//          '<br> Просимо вибачення за тимчасові незручності.</p>');
+        createChat();
+        //$('#media').load('/templates/chat.html');
+        //$('#footer').load('/templates/chatFooter.html');
 
       } else if (appeal === 'lackOfElectricity') {
 
@@ -342,16 +335,11 @@ $(function() {
 
 function textAreaAdjust(o) {
   o.style.height = "1px";
-  o.style.height = (20+o.scrollHeight)+"px";
+  o.style.height = (10+o.scrollHeight)+"px";
 }
 
 function isCanGiveIndexes() {
   var date = new Date();
   var numberDay = date.getDate();
   return (numberDay >= 20 && 1 == numberDay) ? true : false;
-}
-
-function getCurrentDate(date){
-  var dt = new Date();
-  var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 }
