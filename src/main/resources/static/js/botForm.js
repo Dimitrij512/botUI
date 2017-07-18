@@ -28,7 +28,10 @@ $(function() {
       } else if (user === 'pobut') {
         $('#formDiv').load('/templates/pobutUserForm.html');
       } else {
-        $("#formDiv").empty();
+        $('#media').load('/templates/chat.html');
+        //$('#footer').load('/templates/chatFooter.html');
+        
+        //$("#formDiv").empty();
       }
     });
 
@@ -285,8 +288,9 @@ $(function() {
       if (appeal === 'consultation') {
 
         createChat();
-        //$('#media').load('/templates/chat.html');
-        //$('#footer').load('/templates/chatFooter.html');
+        
+//        $('#media').load('/templates/chat.html');
+//        $('#footer').load('/templates/chatFooter.html');
 
       } else if (appeal === 'lackOfElectricity') {
 

@@ -1,3 +1,9 @@
+$(function() {
+    
+  $( "#sendMessage" ).click(function() {
+    sendMesage();
+  });  
+})
 
 
 function createChat(){
@@ -14,20 +20,33 @@ function createChat(){
   
   //Create web socket connection to the server
   function connect() {
+    
     var socket = new SockJS(host + '/chat/chat-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, (frame)=> {
       
       console.log('Connected: ' + frame);
       
+      $('.loader').show();
+      
       stompClient.subscribe('/queue/'+ userPreChat.accountNumber , function(data) {
+
+        var dataBody = JSON.parse(data.body);
         
-    
-        console.log(data);
-        if(data.operator_name != null){
-          dataOperator = data;
+        console.log("Data ID : " + dataBody.id);
+        
+        if(dataBody.id !== undefined){
+          $('.loader').hide();
+          
+          dataOperator = dataBody;
+          $('#media').load('/templates/chat.html');
+          $('#footer').load('/templates/chatFooter.html');
+
+        }else if(dataBody.text !== undefined){
+          console.log(dataBody.text);
+          $("#showMessage").append( "<p>"+ dataBody.text +"</p>" );
         }else {
-          console.log(data.text);
+          console.log(dataBody);
         }
 
         console.log('In method');
@@ -62,11 +81,16 @@ function createChat(){
   function sendMesage() {
          
       let message = $('#message').val()
-      $('#message').val('')
-      $( "#showMessage").append( "<p>ha"+ message +"</p>" );
       
-      stompClient.send("/chat/operator/"+ dataOperator.operator_name, {}, JSON.stringify({
-        'text': $('#message').val(),
+      $('#message').val('')
+      $( "#showMessage").append( "<p>"+ message +"</p>" );
+      
+      console.log(message);
+      stompClient.send("/chat/operator/"+ dataOperator.id, {}, JSON.stringify({
+        'text': message,
         'dialog_id': dataOperator.dialog_id        
       }));
+      
+      console.log('end method');
 }
+  
