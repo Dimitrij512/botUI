@@ -29,7 +29,7 @@ $(function() {
         $('#formDiv').load('/templates/pobutUserForm.html');
       } else {
         $('#media').load('/templates/chat.html');
-        //$('#footer').load('/templates/chatFooter.html');
+        $('#footer').load('/templates/chatFooter.html');
         
         //$("#formDiv").empty();
       }

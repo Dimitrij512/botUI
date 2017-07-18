@@ -63,7 +63,7 @@
 	position: fixed;
 	bottom: 0%;
 	right: 0%;
-	width: 315px;
+	width: 355px;
 	padding-right: 10px;	
 	
 	@import (less) url("bootstrap.css");

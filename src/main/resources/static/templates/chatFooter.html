@@ -1,20 +1,17 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+  <div class="panel-footer">
+     <div class="input-group">
+         <input id="message" type="text" class="form-control input-sm" placeholder="Ваше повідомлення..." />
+         <span class="input-group-btn">
+             <button class="btn btn-warning btn-sm" id="sendMessage">
+                 Відправити</button>
+         </span>
+     </div>
+ </div>
+
   <script type="text/javascript"  charset="utf-8" src="/js/botForm.js"></script>
   <script type="text/javascript"  charset="utf-8" src="/js/chatSocket.js"></script>
-</head>
-
- <div class="portlet-footer">
-     <form role="form">
-         <div class="form-group">
-             <textarea id="message" class="form-control" placeholder="Введіть повідомлення..."></textarea>
-         </div>
-         <div class="form-group">
-             <button type="button" id='sendMessage' class="btn btn-default pull-right">Надіслати</button>
-             <div class="clearfix"></div>
-         </div>
-     </form>
- </div>
- <input id="contextPath" type="hidden" value="${pageContext.request.contextPath}" />
 </html>

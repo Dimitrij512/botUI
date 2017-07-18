@@ -11,6 +11,8 @@ $(function() {
     $("#containerBot").empty();
     userPreChat = null;
     isJuridic = null;
+    // web socket disconnect
+    disconnect();
     
   });
 

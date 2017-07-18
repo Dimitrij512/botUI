@@ -1,5 +1,4 @@
 $(function() {
-    
   $( "#sendMessage" ).click(function() {
     sendMesage();
   });  
@@ -33,8 +32,6 @@ function createChat(){
 
         var dataBody = JSON.parse(data.body);
         
-        console.log("Data ID : " + dataBody.id);
-        
         if(dataBody.id !== undefined){
           $('.loader').hide();
           
@@ -43,30 +40,16 @@ function createChat(){
           $('#footer').load('/templates/chatFooter.html');
 
         }else if(dataBody.text !== undefined){
-          console.log(dataBody.text);
-          $("#showMessage").append( "<p>"+ dataBody.text +"</p>" );
+          
+          $("#chat ul li:last").after('<li class="left clearfix" style="background-color: #ffe6cb;" ><span class="chat-img pull-left"><img width="40px" height="40px" src="/image/logoOE.png" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Диспетчер</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() +'</small></div><p>'+ dataBody.text +'</p></div></li>');
+        
         }else {
           console.log(dataBody);
         }
-
-        console.log('In method');
-        console.log(JSON.parse(data.body));
-//        
-//        console.log('Data: ' + data);
-//        console.log('operator_name: ' + dataOperator.operator_name);
-//        console.log('dialog_id: ' + dataOperator.dialog_id);
-        
       });
-      
-      //if (socket.readyState === 1) {
         
         stompClient.send("/chat/connect/" + userPreChat.accountNumber);
-//        
-//        console.log("readyState : " + socket.readyState);
-        
-        //sendMesage();
-        //disconnect();
-      //}
+
     });
   }
 
@@ -79,18 +62,48 @@ function createChat(){
 
   //Sent message to the server
   function sendMesage() {
-         
+  
       let message = $('#message').val()
       
       $('#message').val('')
-      $( "#showMessage").append( "<p>"+ message +"</p>" );
+      $("#chat ul li:last").after('<li class="right clearfix" style="background-color: #c7eafc;;"><span class="chat-img pull-right"><img width="40px" height="40px" src="/image/clientLogo.png" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() + '</small><strong class="pull-right primary-font">'+ userPreChat.accountNumber +'</strong></div><p>'+ message +'</p></div></li>');
       
-      console.log(message);
       stompClient.send("/chat/operator/"+ dataOperator.id, {}, JSON.stringify({
         'text': message,
         'dialog_id': dataOperator.dialog_id        
       }));
-      
-      console.log('end method');
 }
+  
+function getCurrnetTime(){
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  var hours = today.getHours();
+  var minutes = today.getMinutes();
+  var seconds = today.getSeconds();
+
+  if(dd<10) {
+      dd = '0'+dd;
+  } 
+
+  if(mm<10) {
+      mm = '0'+mm;
+  }
+  
+  if(hours < 10){
+    hours = '0'+hours;
+  }
+  
+  if(minutes<10){
+    minutes = '0'+minutes;
+  }
+  
+  if(seconds<10){
+    seconds = '0'+seconds
+  }
+
+  return today =  dd + '.' + mm + '.' + yyyy + ' ' + hours + ':' + minutes + ':' + seconds
+  
+}  
   
