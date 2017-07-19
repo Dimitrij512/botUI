@@ -41,10 +41,10 @@ function createChat(){
 
         }else if(dataBody.text !== undefined){
           
-          $("#chat ul li:last").after('<li class="left clearfix" style="background-color: #ffe6cb;" ><span class="chat-img pull-left"><img width="40px" height="40px" src="/image/logoOE.png" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Диспетчер</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() +'</small></div><p>'+ dataBody.text +'</p></div></li>');
+          $("#chat ul li:last").after('<li class="left clearfix"><span class="chat-img pull-left"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Диспетчер</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() +'</small></div><p>'+ dataBody.text +'</p></div></li>');
         
-        }else {
-          console.log(dataBody);
+        }else if(dataBody.ended) {
+          $("#chat ul li:last").after('<li class="left clearfix"><span class="chat-img pull-left"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Диспетчер</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() +'</small></div><p>Диспетчер залишив чат. Зверніться на гарячу лінію !</p></div></li>');
         }
       });
         
@@ -56,6 +56,12 @@ function createChat(){
   // web socket disconnect
   function disconnect() {
     if (stompClient != null) {
+      
+      stompClient.send("/chat/operator/"+ dataOperator.id, {}, JSON.stringify({
+        'text': 'Клієнт завершив чат !',
+        'dialog_id': dataOperator.dialog_id        
+      }));
+      
       stompClient.disconnect();
     }
   }
@@ -66,7 +72,7 @@ function createChat(){
       let message = $('#message').val()
       
       $('#message').val('')
-      $("#chat ul li:last").after('<li class="right clearfix" style="background-color: #c7eafc;;"><span class="chat-img pull-right"><img width="40px" height="40px" src="/image/clientLogo.png" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() + '</small><strong class="pull-right primary-font">'+ userPreChat.accountNumber +'</strong></div><p>'+ message +'</p></div></li>');
+      $("#chat ul li:last").after('<li class="right clearfix"><span class="chat-img pull-right"></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>'+ getCurrnetTime() + '</small><strong class="pull-right primary-font"> Ви </strong></div><p>'+ message +'</p></div></li>');
       
       stompClient.send("/chat/operator/"+ dataOperator.id, {}, JSON.stringify({
         'text': message,
@@ -103,7 +109,7 @@ function getCurrnetTime(){
     seconds = '0'+seconds
   }
 
-  return today =  dd + '.' + mm + '.' + yyyy + ' ' + hours + ':' + minutes + ':' + seconds
+  return today =  hours + ':' + minutes + ':' + seconds
   
 }  
   

@@ -287,10 +287,8 @@ $(function() {
       
       if (appeal === 'consultation') {
 
+        $("#showDataForUser").empty();
         createChat();
-        
-//        $('#media').load('/templates/chat.html');
-//        $('#footer').load('/templates/chatFooter.html');
 
       } else if (appeal === 'lackOfElectricity') {
 
