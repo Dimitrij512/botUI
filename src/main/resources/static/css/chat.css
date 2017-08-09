@@ -58,16 +58,6 @@
     background-color: #555;
 }
 
-
-
-
-
-/*
-
-
-
-
-*/
 .portlet {
     margin-bottom: 15px;
 }
@@ -94,13 +84,6 @@
 .portlet .portlet-heading a {
     color: #fff;
 }
-
-#botWindow chat-widget{
-	width: auto; 
-	height: 300px;
-	overflow-y: hidden;
-}
-
 
 .portlet .portlet-heading a:hover,
 .portlet .portlet-heading a:active,
@@ -141,14 +124,6 @@
     padding: 15px;
     background: #fff;
 }
-
-/* .portlet .portlet-footer { */
-/*     padding: 4px 5px; !imporant */
-/* } */
-
-/* .portlet .portlet-footer ul { */
-/*     margin: 0; */
-/* } */
 
 .portlet-green,
 .portlet-green>.portlet-heading {
@@ -240,4 +215,5 @@
 
 .text-red {
     color: #e74c3c;
-}                
+}
+              

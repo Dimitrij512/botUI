@@ -30,8 +30,6 @@ $(function() {
       } else {
         $('#media').load('/templates/chat.html');
         $('#footer').load('/templates/chatFooter.html');
-        
-        //$("#formDiv").empty();
       }
     });
 
@@ -278,6 +276,21 @@ $(function() {
     }
 
   });
+  
+  $("#sendComplaint").click(function(){
+    $('.loader').show();
+    sendComplaint($('#comment_text').val());
+  });
+  
+  $("#canselComplaint").click(function(){
+    
+    let selectForUser = isJuridic ? '/templates/selectAppeals.html' : '/templates/selectAppealsJuridic.html'
+    
+      $( ".btn-complaint" ).empty();
+      $('#media').load(selectForUser);
+    
+  });
+  
 
   $("#selectAppeals").change(function() {
 
@@ -327,6 +340,12 @@ $(function() {
         } else {
           loadInputForIndexes(userPreChat.activeScaleCount);
         }
+      } else if (appeal === 'complaint') {
+
+        $('#media').load('/templates/complaint.html');
+        $('#footer').load('/templates/submitButtonForComplaint.html');
+        
+        
       } else if (appeal === 'default') {
 
         $("#showDataForUser").empty();

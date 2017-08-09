@@ -28,7 +28,7 @@ function createChat(){
       
       $('.loader').show();
       
-      stompClient.subscribe('/queue/'+ userPreChat.accountNumber , function(data) {
+      stompClient.subscribe('/queue/'+ userPreChat.clientId , function(data) {
 
         var dataBody = JSON.parse(data.body);
         
@@ -48,7 +48,10 @@ function createChat(){
         }
       });
         
-        stompClient.send("/chat/connect/" + userPreChat.accountNumber);
+        
+        let urlForSend = isJuridic ? '/chat/connect/juridical/' : '/chat/connect/physical/';
+        
+        stompClient.send(urlForSend + userPreChat.clientId);
 
     });
   }

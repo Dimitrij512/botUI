@@ -12,6 +12,8 @@ function getPobutUser(personalAccount) {
     success: function(response) {
 
       userPreChat = response;
+      
+      userPreChat.clientId = response.accountNumber;
 
       if (response != '') {
 
@@ -55,9 +57,8 @@ function getJuridicUser(contractNumber) {
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
       
-      console.log(url);
-      
       userPreChat = response;
+      userPreChat.clientId = response.contractNumber;
 
       if (response !== '') {
         $('.loader').hide();
@@ -74,8 +75,6 @@ function getJuridicUser(contractNumber) {
       }
     },
     error: function(jqXHR) {
-      
-      console.log(url);
       
       $('.loader').hide();
       $('#formDiv').show();
@@ -345,6 +344,36 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
   });
 
 }
+
+
+function sendComplaint(complaintText) {
+  
+  var complaint = {
+      'clientId': userPreChat.clientId,
+      'text':complaintText
+  } 
+
+  $.ajax({
+    type: 'POST',
+    url: host + '/chat/complaint',
+    data: JSON.stringify(complaint),
+    contentType: 'application/json; charset=utf-8',
+    success: function(response) {
+
+      $('.loader').hide();
+      
+      alert('All good !!');
+    },
+    error: function(jqXHR) {
+      alert("All bad");
+      
+      $('.loader').hide();
+
+    },
+  });
+
+}
+
 
 function loadInputForIndexes(zone) {
   if (zone == '1') {
