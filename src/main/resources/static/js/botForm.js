@@ -11,10 +11,14 @@ var validation = {
   isLength: function(str) {
     return str.length == 8;
   },
-  isPhoneNumber:function(str){
+  isPhoneNumber: function(str){
     var pattern = /^(\+38|0)\d{7,10}$/;
     return pattern.test(str);
-  }
+  },
+  isEmail: function(str){
+    var pattern = /\S+@\S+\.\S+/;
+    return pattern.test(str);
+  },
 
 };
 
@@ -279,7 +283,18 @@ $(function() {
   
   $("#sendComplaint").click(function(){
     $('.loader').show();
-    sendComplaint($('#comment_text').val());
+    let email = $("#emailComplaint").val();
+    
+    
+    console.log("valid : " )
+    if(validation.isEmail(email)){
+        $("#emailComplaint").css("border", "");
+        $('#errorEmailComplaint').empty();
+        sendComplaint($('#comment_text').val());
+    }else{
+      $("#emailComplaint").css("border", "1px solid red");
+      $('#errorEmailComplaint').html('<p style="color:red;"> Некоректно введений електронна пошта </p>');
+    }
   });
   
   $("#canselComplaint").click(function(){

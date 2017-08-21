@@ -18,8 +18,6 @@ $(function() {
     $("#selectRate option:selected").each(function() {
       var rate = $(this).val();
       
-      console.log(rate);
-      
       if(validation.isNumber(rate) && rate <= defauldRateOfOperator){
         
         saveRateOfOperator(dataOperator.dialog_id, defauldRateOfOperator);
