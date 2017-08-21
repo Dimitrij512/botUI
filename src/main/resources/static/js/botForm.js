@@ -284,13 +284,12 @@ $(function() {
   $("#sendComplaint").click(function(){
     $('.loader').show();
     let email = $("#emailComplaint").val();
-    
-    
-    console.log("valid : " )
+    let textComplaint = $('#comment_text').val();
+
     if(validation.isEmail(email)){
         $("#emailComplaint").css("border", "");
         $('#errorEmailComplaint').empty();
-        sendComplaint($('#comment_text').val());
+        sendComplaint(textComplaint, email);
     }else{
       $("#emailComplaint").css("border", "1px solid red");
       $('#errorEmailComplaint').html('<p style="color:red;"> Некоректно введений електронна пошта </p>');

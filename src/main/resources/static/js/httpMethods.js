@@ -358,11 +358,12 @@ function saveRateOfOperator(dialogId, rate){
   });
 }
 
-function sendComplaint(complaintText) {
+function sendComplaint(complaintText, email) {
   
   var complaint = {
       'clientId': userPreChat.clientId,
-      'text':complaintText
+      'text':complaintText,
+      'email':email
   } 
 
   $.ajax({
