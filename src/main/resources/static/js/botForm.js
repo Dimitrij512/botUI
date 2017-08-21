@@ -284,7 +284,7 @@ $(function() {
   
   $("#canselComplaint").click(function(){
     
-    let selectForUser = isJuridic ? '/templates/selectAppeals.html' : '/templates/selectAppealsJuridic.html'
+    let selectForUser = isJuridic ? '/templates/selectAppealsJuridic.html' : '/templates/selectAppeals.html';
     
       $( ".btn-complaint" ).empty();
       $('#media').load(selectForUser);

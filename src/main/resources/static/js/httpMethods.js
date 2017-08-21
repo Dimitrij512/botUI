@@ -305,6 +305,7 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
 
 function saveIndicatorForOneZoneCounter(accountNumber) {
 
+
   var indicator = {
 
     "indicator": $("#indicator").val()
@@ -345,6 +346,17 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
 
 }
 
+function saveRateOfOperator(dialogId, rate){
+  
+  $.ajax({
+    type: 'POST',
+    url: host + '/chat/settingRate/' + dialogId + '/' + rate,
+    data: JSON.stringify(""),
+    contentType: 'application/json; charset=utf-8',
+    success: function(response) {},
+    error: function(jqXHR) {},
+  });
+}
 
 function sendComplaint(complaintText) {
   
@@ -365,6 +377,7 @@ function sendComplaint(complaintText) {
       alert('All good !!');
     },
     error: function(jqXHR) {
+      console.log(jqXHR);
       alert("All bad");
       
       $('.loader').hide();

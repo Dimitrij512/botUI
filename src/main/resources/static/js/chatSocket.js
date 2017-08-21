@@ -1,14 +1,42 @@
 $(function() {
+  
+  var defauldRateOfOperator = 5;
+  
   $( "#sendMessage" ).click(function() {
     sendMesage();
-  });  
+  });
+  
+  $('#endChat').click(function() {
+    
+    $('#media').load('/templates/selectRait.html');
+    $('.input-group').empty();
+    disconnect();
+    
+  });
+  
+  $("#selectRate").change(function() {
+    $("#selectRate option:selected").each(function() {
+      var rate = $(this).val();
+      
+      console.log(rate);
+      
+      if(validation.isNumber(rate) && rate <= defauldRateOfOperator){
+        
+        saveRateOfOperator(dataOperator.dialog_id, defauldRateOfOperator);
+      }
+      
+      $("#callMan").show();
+      $("#containerBot").empty();
+      userPreChat = null;
+      isJuridic = null;  
+      
+    });
+  });
 })
 
 
 function createChat(){
-  
   console.log("create chat");
-  
   var stompClient = null;
   var dataOperator = null;
   var host = 'http://localhost:8082';
@@ -19,7 +47,7 @@ function createChat(){
   
   //Create web socket connection to the server
   function connect() {
-    
+    var maxRate = 5;    
     var socket = new SockJS(host + '/chat/chat-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, (frame)=> {
@@ -36,6 +64,10 @@ function createChat(){
           $('.loader').hide();
           
           dataOperator = dataBody;
+          
+          //httpmethod
+          saveRateOfOperator(dataOperator.dialog_id, maxRate);
+          
           $('#media').load('/templates/chat.html');
           $('#footer').load('/templates/chatFooter.html');
 
@@ -59,7 +91,7 @@ function createChat(){
   // web socket disconnect
   function disconnect() {
     if (stompClient != null) {
-      
+     
       stompClient.send("/chat/operator/"+ dataOperator.id, {}, JSON.stringify({
         'text': 'Клієнт завершив чат !',
         'dialog_id': dataOperator.dialog_id        
