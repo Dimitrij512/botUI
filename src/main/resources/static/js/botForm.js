@@ -302,7 +302,6 @@ $(function() {
     
       $( ".btn-complaint" ).empty();
       $('#media').load(selectForUser);
-    
   });
   
 

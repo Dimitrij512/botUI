@@ -353,8 +353,12 @@ function saveRateOfOperator(dialogId, rate){
     url: host + '/chat/settingRate/' + dialogId + '/' + rate,
     data: JSON.stringify(""),
     contentType: 'application/json; charset=utf-8',
-    success: function(response) {},
-    error: function(jqXHR) {},
+    success: function(response) {
+      console.log("all good: " + rate)
+    },
+    error: function(jqXHR) {
+      console.log("all bad: " + rate)
+    },
   });
 }
 
@@ -372,15 +376,20 @@ function sendComplaint(complaintText, email) {
     data: JSON.stringify(complaint),
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
-
       $('.loader').hide();
       
-      alert('All good !!');
+      let selectForUser = isJuridic ? '/templates/selectAppealsJuridic.html' : '/templates/selectAppeals.html';
+      $( ".btn-complaint" ).empty();
+
+      $('#media').load(selectForUser);
+/* 
+      $("#showDataForUser").html('<p style="color:red;"> Вашу скаргу зафіксовано' +
+          '<br> Відповідь на Вашу скаргу буде вислано Вам на електронну пошту' +
+          '<br> яку Ви вказали при реєстрації скарги.' +
+          '<br> (0342) 59 40 20 </p>');  */ 
     },
     error: function(jqXHR) {
-      console.log(jqXHR);
-      alert("All bad");
-      
+      console.log(jqXHR);     
       $('.loader').hide();
 
     },

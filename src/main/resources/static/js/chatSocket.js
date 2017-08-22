@@ -19,8 +19,9 @@ $(function() {
       var rate = $(this).val();
       
       if(validation.isNumber(rate) && rate <= defauldRateOfOperator){
+        console.log("send rate : " + rate);
         
-        saveRateOfOperator(dataOperator.dialog_id, defauldRateOfOperator);
+        saveRateOfOperator(dataOperator.dialog_id, rate);
       }
       
       $("#callMan").show();
