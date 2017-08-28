@@ -18,10 +18,12 @@ function getPobutUser(personalAccount) {
       if (response != '') {
 
         $('.loader').hide();
+        $('#selectUser').removeAttr('disabled');
         $('#media').load('/templates/selectAppeals.html');
 
       } else {
         $('.loader').hide();
+        $('#selectUser').removeAttr('disabled');
 
         $("#personalAccount").css("border", "1px solid red");
         $('#errorUserPobut').html('<p style="color:red;"> Вибачте, неправильно введено' +
@@ -33,6 +35,7 @@ function getPobutUser(personalAccount) {
     },
     error: function(jqXHR) {
       $('.loader').hide();
+      $('#selectUser').removeAttr('disabled');
       $("#personalAccount").css("border", "1px solid red");
 
       $('#errorUserPobut').html('<p style="color:red;">' + jqXHR.responseText + ' </p>');
@@ -62,11 +65,13 @@ function getJuridicUser(contractNumber) {
 
       if (response !== '') {
         $('.loader').hide();
+        $('#selectUser').removeAttr('disabled');
 
         $('#media').load('/templates/selectAppealsJuridic.html');
 
       } else {
         $('.loader').hide();
+        $('#selectUser').removeAttr('disabled');
         $('#formDiv').show();
 
         $("#contractNumber").css("border", "1px solid red");
@@ -77,6 +82,7 @@ function getJuridicUser(contractNumber) {
     error: function(jqXHR) {
       
       $('.loader').hide();
+      $('#selectUser').removeAttr('disabled');
       $('#formDiv').show();
 
       $("#contractNumber").css("border", "1px solid red");
@@ -96,6 +102,7 @@ function getEnergyReportPobut(accountNumber) {
       if (response !== '') {
 
         $('.loader').hide();
+        $('#selectAppeals').removeAttr('disabled');
 
         $('#showDataForUser').html('<p> Шановний споживач, <br> на даний момент за Вашою адресою : <br> ' + response.fullAddress +
           '<br> проводяться ' + response.scenario +
@@ -105,6 +112,7 @@ function getEnergyReportPobut(accountNumber) {
       } else {
 
         $('.loader').hide();
+        $('#selectAppeals').removeAttr('disabled');
 
         $("#showDataForUser").html('<p style="color:red;"> За Вашою адресою вимкнення не зареєстровані.' +
           '<br> Для детальної інформації зверніться за телефоном : ' +
@@ -116,6 +124,7 @@ function getEnergyReportPobut(accountNumber) {
     error: function(jqXHR) {
 
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
       $('#showDataForUser').html('<p style="color:red;">' + jqXHR.responseText + ' </p>');
     },
   });
@@ -139,10 +148,12 @@ function getEnergyReportJuridic(contractNumber, counterNumber) {
       if (response !== '') {
 
         $('.loader').hide();
+        $('#selectAppeals').removeAttr('disabled');
 
         $('#showDataForUser').html(getListJuridicTurnOff(response));
       } else {
         $('.loader').hide();
+        $('#selectAppeals').removeAttr('disabled');
 
         $("#showDataForUser").html('<p style="color:red;"> За Вашим номером договору вимкнення не зареєстровані.' +
           '<br> Для детальної інформації зверніться за телефоном : ' +
@@ -153,6 +164,7 @@ function getEnergyReportJuridic(contractNumber, counterNumber) {
     },
     error: function(jqXHR) {
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
       $('#showDataForUser').html('<p style="color:red;">' + jqXHR.responseText + ' </p>');
     },
   });
@@ -185,6 +197,7 @@ function getBillCustomer(accountNumber) {
     contentType: 'application/json',
     success: function(response) {
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
       
       if(response > 0){
       $('#showDataForUser').html('<p> Шановний споживач, <br>станом на  : ' + today +
@@ -198,6 +211,7 @@ function getBillCustomer(accountNumber) {
     },
     error: function(jqXHR) {
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
       $('#showDataForUser').html('<p style="color:red;">' + jqXHR.responseText + ' </p>');
     },
   });
@@ -227,7 +241,7 @@ function saveIndicatorForThreeZoneCounter(accountNumber) {
     success: function(response) {
 
       $('.loader').hide();
-
+      $('#selectAppeals').removeAttr('disabled');
       
       if($("#phoneNumber").val() !== ''){
         
@@ -241,7 +255,7 @@ function saveIndicatorForThreeZoneCounter(accountNumber) {
       $('#showDataForUser').show();
     },
     error: function(jqXHR) {
-
+      $('#selectAppeals').removeAttr('disabled');
       $('.loader').hide();
 
       $("#fullfpeak").css("border", "1px solid red");
@@ -277,6 +291,7 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
     success: function(response) {
 
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
 
       if($("#phoneNumber").val() !==''){
         
@@ -291,8 +306,9 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
 
     },
     error: function(jqXHR) {
-
+      
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
 
       $("#dayIndicator2").css("border", "1px solid red");
       $("#nightIndicator2").css("border", "1px solid red");
@@ -323,6 +339,7 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
     success: function(response) {
 
       $('.loader').hide();
+      $('#selectAppeals').removeAttr('disabled');
       
       if($("#phoneNumber").val() !== ''){
         
@@ -337,7 +354,7 @@ function saveIndicatorForOneZoneCounter(accountNumber) {
     },
     error: function(jqXHR) {
       $('.loader').hide();
-
+      $('#selectAppeals').removeAttr('disabled');
       $("#indicator").css("border", "1px solid red");
       $('#errorIndicator').html('<p style="color:red;">' + jqXHR.responseText + ' </p>');
       $('#showDataForUser').show();
@@ -353,12 +370,8 @@ function saveRateOfOperator(dialogId, rate){
     url: host + '/chat/settingRate/' + dialogId + '/' + rate,
     data: JSON.stringify(""),
     contentType: 'application/json; charset=utf-8',
-    success: function(response) {
-      console.log("all good: " + rate)
-    },
-    error: function(jqXHR) {
-      console.log("all bad: " + rate)
-    },
+    success: function(response) {},
+    error: function(jqXHR) {},
   });
 }
 

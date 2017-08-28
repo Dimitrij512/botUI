@@ -54,6 +54,7 @@ $(function() {
       $("#personalAccount").css("border", "");
       $('#errorUserPobut').empty();
 
+      $('#selectUser').attr('disabled', 'disabled');
       $('.loader').show();
       $('#formDiv').hide();
 
@@ -97,6 +98,7 @@ $(function() {
       $('#errorRequestJuridic').empty();
 
       $('.loader').show();
+      $('#selectUser').attr('disabled', 'disabled');
       $('#formDiv').hide();
 
       getJuridicUser($('#contractNumber').val());
@@ -132,6 +134,7 @@ $(function() {
     }
     
     if (isNumber && isPhoneNumber) {
+      $('#selectAppeals').attr('disabled', 'disabled');
       $('.loader').show();
       $('#showDataForUser').hide();
 
@@ -192,8 +195,8 @@ $(function() {
 
     if (validInputDay && validInputNight && isPhoneNumber) {
 
+      $('#selectAppeals').attr('disabled', 'disabled');
       $('.loader').show();
-
       $('#showDataForUser').hide();
 
       saveIndicatorForTwoZoneCounter(userPreChat.accountNumber);
@@ -271,8 +274,8 @@ $(function() {
 
     if (isValidFullfpeak && isValidHalfPeak && isValidNight && isPhoneNumber) {
 
+      $('#selectAppeals').attr('disabled', 'disabled');
       $('.loader').show();
-
       $('#showDataForUser').hide();
 
       saveIndicatorForThreeZoneCounter(userPreChat.accountNumber);
@@ -321,15 +324,15 @@ $(function() {
         if (isJuridic) {
 
           $("#showDataForUser").empty();
-
           $('.loader').show();
+          $('#selectAppeals').attr('disabled', 'disabled');
 
           getEnergyReportJuridic(userPreChat.contractNumber, userPreChat.counterNumber);
 
         } else {
 
           $("#showDataForUser").empty();
-
+          $('#selectAppeals').attr('disabled', 'disabled');
           $('.loader').show();
 
           getEnergyReportPobut(userPreChat.accountNumber);
@@ -339,7 +342,7 @@ $(function() {
       } else if (appeal === 'amountDue') {
 
         $("#showDataForUser").empty();
-
+        $('#selectAppeals').attr('disabled', 'disabled');
         $('.loader').show();
 
         getBillCustomer(userPreChat.accountNumber);

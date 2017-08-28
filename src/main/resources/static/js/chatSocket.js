@@ -19,7 +19,6 @@ $(function() {
       var rate = $(this).val();
       
       if(validation.isNumber(rate) && rate <= defauldRateOfOperator){
-        console.log("send rate : " + rate);
         
         saveRateOfOperator(dataOperator.dialog_id, rate);
       }
@@ -54,6 +53,7 @@ function createChat(){
       console.log('Connected: ' + frame);
       
       $('.loader').show();
+      $('#selectAppeals').attr('disabled', 'disabled');
       
       stompClient.subscribe('/queue/'+ userPreChat.clientId , function(data) {
 
@@ -61,6 +61,7 @@ function createChat(){
         
         if(dataBody.id !== undefined){
           $('.loader').hide();
+          $('#selectAppeals').removeAttr('disabled');;
           
           dataOperator = dataBody;
           
