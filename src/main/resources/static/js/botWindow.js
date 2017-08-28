@@ -4,12 +4,9 @@ $(function() {
   /** This data of user are using also in botFrom.js */
   var userPreChat;
   var isJuridic;
-  var isHasOperator = false;
-  
   $('#hideWindow').click(function() {
-    
     // web socket disconnect
-    disconnect();
+    //disconnect();
   
     
     $("#callMan").show();

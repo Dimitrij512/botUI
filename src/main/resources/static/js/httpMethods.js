@@ -199,7 +199,7 @@ function getBillCustomer(accountNumber) {
       $('.loader').hide();
       $('#selectAppeals').removeAttr('disabled');
       
-      if(response > 0){
+      if(response >= 0.00){
       $('#showDataForUser').html('<p> Шановний споживач, <br>станом на  : ' + today +
         ' <br> Вам до оплати : ' + response + ' грн. </p>');
       }else{
@@ -320,10 +320,7 @@ function saveIndicatorForTwoZoneCounter(accountNumber) {
 }
 
 function saveIndicatorForOneZoneCounter(accountNumber) {
-
-
   var indicator = {
-
     "indicator": $("#indicator").val()
   }
   
@@ -390,16 +387,13 @@ function sendComplaint(complaintText, email) {
     contentType: 'application/json; charset=utf-8',
     success: function(response) {
       $('.loader').hide();
-      
       let selectForUser = isJuridic ? '/templates/selectAppealsJuridic.html' : '/templates/selectAppeals.html';
       $( ".btn-complaint" ).empty();
-
-      $('#media').load(selectForUser);
-/* 
-      $("#showDataForUser").html('<p style="color:red;"> Вашу скаргу зафіксовано' +
+      //$('#media').load(selectForUser);
+      $("#media").html('<p style="color:red;"> Вашу скаргу зафіксовано' +
           '<br> Відповідь на Вашу скаргу буде вислано Вам на електронну пошту' +
           '<br> яку Ви вказали при реєстрації скарги.' +
-          '<br> (0342) 59 40 20 </p>');  */ 
+          '<br> (0342) 59 40 20 </p>'); 
     },
     error: function(jqXHR) {
       console.log(jqXHR);     

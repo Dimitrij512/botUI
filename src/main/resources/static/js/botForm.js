@@ -24,12 +24,13 @@ var validation = {
 
 /** This select downloads to page the form for data entry of user after chose the type of user */
 $(function() {
+  var selectedUser = null;
   $("#selectUser").change(function() {
     $("#selectUser option:selected").each(function() {
-      var user = $(this).val();
-      if (user === 'juridic') {
+      selectedUser = $(this).val();
+      if (selectedUser === 'juridic') {
         $('#formDiv').load('/templates/juridicUser.html');
-      } else if (user === 'pobut') {
+      } else if (selectedUser === 'pobut') {
         $('#formDiv').load('/templates/pobutUserForm.html');
       } else {
         $('#media').load('/templates/chat.html');
@@ -39,7 +40,16 @@ $(function() {
 
   });
   
-  
+  $(document).keypress(function(event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        if(selectedUser != null && selectedUser === 'pobut'){
+          $('#submitPobutUser').click();
+        }else if (selectedUser != null && selectedUser === 'juridic') {
+          $('#submitJuridicUser').click();
+        }  
+    }
+  }); 
 
   $("#submitPobutUser").click(function() {
 
@@ -68,6 +78,7 @@ $(function() {
     }
 
   });
+  
 
   $("#submitJuridicUser").click(function() {
 
@@ -378,5 +389,5 @@ function textAreaAdjust(o) {
 function isCanGiveIndexes() {
   var date = new Date();
   var numberDay = date.getDate();
-  return (numberDay >= 20 && 1 == numberDay) ? true : false;
+  return (numberDay >= 20 || 1 == numberDay) ? true : false;
 }
